@@ -6,7 +6,7 @@
 
 - библиотека JPEG с неизменяемыми оригиналами;
 - рецепты с версиями, включением и порядком операций;
-- семь эффектов: RGB split, channel shift, scanlines, noise, horizontal slicing, block displacement и JPEG recompression;
+- 17 эффектов, включая pixel sorting, displacement, bit plane, posterize, color quantization, VHS/CRT, interlacing, feedback, dithering и фото-имитацию datamosh;
 - быстрый preview на уменьшенной копии;
 - undo/redo в текущей сессии;
 - экспорт полного размера в JPEG и PNG;
@@ -88,4 +88,4 @@ OpenAPI-схема доступна по адресу `http://127.0.0.1:8000/api
 - до 50 МБ и 50 мегапикселей;
 - сервис доступен только на `127.0.0.1`;
 - пользовательские данные хранятся в `data/`;
-- версия `0.0.1` остаётся неизменной до завершения MVP, сборки различаются Git-хэшем и timestamp.
+- версия `0.1.0` — этап расширенных эффектов; сборки различаются Git-хэшем и timestamp.

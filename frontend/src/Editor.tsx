@@ -26,6 +26,8 @@ const CATEGORY_NAMES: Record<string, string> = {
   digital: "Цифровые следы",
   distortion: "Искажение",
   compression: "Сжатие",
+  analog: "Аналоговое видео",
+  datamosh: "Датамош",
 };
 
 function newSeed(): number {

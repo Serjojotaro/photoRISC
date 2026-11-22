@@ -30,10 +30,10 @@ def test_health_and_version(client: TestClient) -> None:
     version = client.get("/api/v1/version")
     assert version.status_code == 200
     assert version.json() == {
-        "version": "0.0.1",
+        "version": "0.1.0",
         "build_sha": "abc12",
         "build_timestamp": "2026-11-22T18:30:00Z",
-        "display": "0.0.1 abc12 2026-11-22T18:30:00Z",
+        "display": "0.1.0 abc12 2026-11-22T18:30:00Z",
     }
 
 
@@ -244,7 +244,7 @@ def test_recipe_crud_and_revision_conflict(
     asset = upload(client, jpeg_bytes).json()
     effects = client.get("/api/v1/effects")
     assert effects.status_code == 200
-    assert len(effects.json()["items"]) == 7
+    assert len(effects.json()["items"]) == 17
     noise = client.get("/api/v1/effects/noise")
     assert noise.status_code == 200
     assert noise.json()["uses_seed"] is True
