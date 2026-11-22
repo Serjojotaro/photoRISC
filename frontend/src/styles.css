@@ -1,0 +1,60 @@
+:root {
+  color: #edf4ef;
+  background: #080c0b;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --bg: #080c0b;
+  --panel: #111816;
+  --panel-raised: #17211e;
+  --line: #2a3632;
+  --muted: #91a099;
+  --acid: #b8ff59;
+  --acid-soft: #d9ffa7;
+  --danger: #ff8a74;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 960px;
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  min-width: 960px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(rgba(184, 255, 89, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 255, 89, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 78% 4%, rgba(116, 180, 70, 0.12), transparent 28%),
+    var(--bg);
+  background-size: 38px 38px, 38px 38px, auto, auto;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: progress;
+  opacity: 0.58;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  color: #0a100b;
+  background: var(--acid);
+}

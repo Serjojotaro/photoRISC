@@ -1,0 +1,14 @@
+.env
+.gitignore
+.venv
+**/.venv
+**/__pycache__
+**/*.py[cod]
+**/.pytest_cache
+backend/.pytest_cache
+backend/tests
+data
+frontend/node_modules
+frontend/dist
+build-info.json
+README.md

@@ -1,0 +1,59 @@
+services:
+  api:
+    build:
+      context: .
+      target: backend
+    environment:
+      DATA_DIR: /app/data
+      DATABASE_PATH: /app/data/photoRISC.sqlite3
+      MAX_UPLOAD_BYTES: ${MAX_UPLOAD_BYTES:-52428800}
+      MAX_IMAGE_PIXELS: ${MAX_IMAGE_PIXELS:-50000000}
+      PREVIEW_MAX_SIZE: ${PREVIEW_MAX_SIZE:-1200}
+      PREVIEW_QUALITY: ${PREVIEW_QUALITY:-88}
+    volumes:
+      - ./data:/app/data
+    expose:
+      - "8000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=2)"
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: .
+      target: backend
+    command: ["python", "-m", "app.worker"]
+    environment:
+      DATA_DIR: /app/data
+      DATABASE_PATH: /app/data/photoRISC.sqlite3
+      MAX_UPLOAD_BYTES: ${MAX_UPLOAD_BYTES:-52428800}
+      MAX_IMAGE_PIXELS: ${MAX_IMAGE_PIXELS:-50000000}
+      PREVIEW_MAX_SIZE: ${PREVIEW_MAX_SIZE:-1200}
+      PREVIEW_QUALITY: ${PREVIEW_QUALITY:-88}
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      target: frontend
+    ports:
+      - "127.0.0.1:${PHOTORISC_PORT:-80}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped

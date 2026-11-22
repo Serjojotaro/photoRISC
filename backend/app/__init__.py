@@ -1,0 +1,1 @@
+"""PhotoRISC backend application."""
