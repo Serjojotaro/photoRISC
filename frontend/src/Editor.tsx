@@ -97,6 +97,11 @@ export default function Editor({ asset, onBack }: Props) {
     : null;
 
   useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, []);
+
+  useEffect(() => {
     let cancelled = false;
     Promise.all([getEffects(), getRecipes(asset.id)])
       .then(([availableEffects, savedRecipes]) => {

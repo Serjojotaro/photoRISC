@@ -6,6 +6,7 @@ RUN apt-get update \
 
 WORKDIR /source
 COPY .git .git
+COPY VERSION VERSION
 RUN SHA="$(git rev-parse --short=5 HEAD)" \
     && TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
     && printf '{"build_sha":"%s","build_timestamp":"%s"}\n' "$SHA" "$TIMESTAMP" \

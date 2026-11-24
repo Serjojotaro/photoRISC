@@ -5,10 +5,10 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
 
 const version = {
-  version: "0.1.0",
+  version: "0.1.2",
   build_sha: "abc12",
   build_timestamp: "2026-11-22T18:30:00Z",
-  display: "0.1.0 abc12 2026-11-22T18:30:00Z",
+  display: "0.1.2 abc12 2026-11-22T18:30:00Z",
 };
 
 const pendingAsset = {
@@ -62,7 +62,7 @@ describe("App", () => {
     expect(await screen.findByText("forest.jpg")).toBeInTheDocument();
     expect(screen.getByText("Готовим превью")).toBeInTheDocument();
     expect(
-      screen.getByText("0.1.0 abc12 2026-11-22T18:30:00Z"),
+      screen.getByText("0.1.2 abc12 2026-11-22T18:30:00Z"),
     ).toBeInTheDocument();
   });
 

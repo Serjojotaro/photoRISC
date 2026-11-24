@@ -30,10 +30,10 @@ def test_health_and_version(client: TestClient) -> None:
     version = client.get("/api/v1/version")
     assert version.status_code == 200
     assert version.json() == {
-        "version": "0.1.0",
+        "version": "0.1.2",
         "build_sha": "abc12",
         "build_timestamp": "2026-11-22T18:30:00Z",
-        "display": "0.1.0 abc12 2026-11-22T18:30:00Z",
+        "display": "0.1.2 abc12 2026-11-22T18:30:00Z",
     }
 
 

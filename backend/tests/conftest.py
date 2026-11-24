@@ -16,7 +16,7 @@ from app.main import create_app
 def settings(tmp_path: Path) -> Settings:
     project_root = tmp_path / "photoRISC"
     project_root.mkdir()
-    (project_root / "VERSION").write_text("0.1.0\n", encoding="utf-8")
+    (project_root / "VERSION").write_text("0.1.2\n", encoding="utf-8")
     return Settings(
         project_root=project_root,
         data_dir=project_root / "data",
@@ -31,7 +31,7 @@ def settings(tmp_path: Path) -> Settings:
 @pytest.fixture
 def build_info() -> BuildInfo:
     return BuildInfo(
-        version="0.1.0",
+        version="0.1.2",
         build_sha="abc12",
         build_timestamp="2026-11-22T18:30:00Z",
     )
