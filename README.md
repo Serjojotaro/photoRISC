@@ -36,6 +36,13 @@ docker compose version
 
 Для других дистрибутивов установите Docker Engine и Compose plugin штатным пакетным менеджером и проверьте обе команды выше.
 
+Если `apt update` завершается ошибкой `file:/cdrom ... Release file`, на сервере остался неактивный CD-ROM source. В `/etc/apt/sources.list` закомментируйте строку `file:///cdrom`:
+
+```bash
+sudo sed -i 's|^deb .*file:///cdrom.*$|# CD-ROM repository disabled|' /etc/apt/sources.list
+sudo apt update
+```
+
 Запуск PhotoRISC:
 
 ```bash
@@ -68,6 +75,19 @@ ssh -L 8080:127.0.0.1:80 пользователь@linux-host
 ```
 
 После подключения откройте `http://127.0.0.1:8080` на своём компьютере. Прямая публикация сервиса в LAN не рекомендуется: в текущей версии нет аутентификации.
+
+Если порт 80 уже занят системным Nginx или другим сервисом:
+
+```bash
+ss -ltnp | grep ':80 '
+```
+
+Укажите свободный порт в `.env`, например `PHOTORISC_PORT=8080`, перезапустите Compose и используйте соответствующий SSH-туннель:
+
+```bash
+docker compose up -d
+ssh -L 18080:127.0.0.1:8080 пользователь@linux-host
+```
 
 ## Docker на Windows
 
